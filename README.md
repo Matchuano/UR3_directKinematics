@@ -16,13 +16,6 @@ The project includes the necessary code and simulation files to interact with th
 - **Inverse Kinematics**: Calculate the joint angles required to move the end-effector to a desired position.
 - **Real-Time Simulation**: Perform real-time robot control and observe the results in the CoppeliaSim environment.
 
-## Repository Contents
-
-- `ur3_control.py`: Main Python script that connects to CoppeliaSim and provides functions for controlling the UR3 robotic arm.
-- `simulation/`: Directory containing CoppeliaSim scene files and models.
-  - `ur3_simulation.ttt`: CoppeliaSim scene for the UR3 robot.
-- `requirements.txt`: List of dependencies required for running the Python script.
-- `README.md`: This documentation file with setup and usage instructions.
 
 ## Prerequisites
 
@@ -30,7 +23,6 @@ The project includes the necessary code and simulation files to interact with th
 
 - **CoppeliaSim**: Ensure that you have CoppeliaSim installed and that the remote API is enabled.
 - **Python 3.x**: The script is written in Python and requires Python 3.x to run.
-- **Python Libraries**: The project requires several Python libraries that can be installed using the provided `requirements.txt` file.
 
 ### Python Dependencies
 
@@ -38,10 +30,33 @@ The project includes the necessary code and simulation files to interact with th
 - **Robotics Toolbox for Python**: Required for handling inverse kinematics.
 - **SpatialMath**: Required for managing 3D spatial transformations.
 
-## Installation
+## Running the Simulation
 
-1. **Clone the repository**:
+1. Launch CoppeliaSim and open the `cenarioUR3.ttt` scene.
+2. Run the CoppeliaSim scene.
+3. Run the Python script to control the UR3 robot:
    ```bash
-   git clone https://github.com/yourusername/ur3-robot-control.git
-   cd ur3-robot-control
+   python directKinematics.py
+4. The script will move the robot through several joint configurations and print the current joint and end-effector positions in the terminal.
 
+## Example Usage
+
+Once the simulation is running, the script provides a variety of functionalities:
+
+- **Set joint positions:** Moves the UR3 robot joints to specified angles (in radians).
+  ```python
+  ur3.set_joint_position([0, 0, 0, 0, 0, 0])
+- **Retrieve current joint positions:**
+  ```python
+  print(ur3.get_joint_position())
+- **Calculate the end-effector position based on the current joint angles:**
+  ```python
+  print(ur3.calculate_effector_position())
+- **Inverse kinematics to move the end-effector to a target position:**
+  ```python
+  ur3.inverse_kinematics([0.1, 0.2, 0.5])
+
+## Authors
+
+- Matheus de Sousa Luiz
+- Nathan Spinola Zeidan
